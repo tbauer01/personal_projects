@@ -1,0 +1,50 @@
+{
+    "_comment_header": "FIR Filter Design Configuration - Signal Processing Pipeline",
+    
+    "_comment1": "=== INPUT FILES ===",
+    "measured": "measurements/Post-MSO_1_24s.frd",
+    "target": "targets/10db_classical_harman.txt",
+    
+    "_comment2": "=== TARGET ALIGNMENT ===",
+    "lock_low": 200.0,
+    "lock_high": 400.0,
+    "_help_lock": "Frequency range (Hz) where target curve is vertically aligned to measured response",
+    
+    "_comment3": "=== FIR CONFIGURATION ===",
+    "sample_rate": 96000.0,
+    "num_channels": 4,
+    "numtaps": [512, 512, 1536, 1536],
+    "maxtaps": 4096,
+    "channel_names": ["Left", "Right", "SubL", "SubR"],
+    "prefix": "global_eq",
+    "_help_numtaps": "FIR length per channel. More taps = better frequency resolution but more latency",
+    
+    "_comment4": "=== SIGNAL PROCESSING PIPELINE (applied in order) ===",
+    
+    "_comment_step0": "--- Step 0: Scaling Clip (prevent extreme corrections) ---",
+    "scaling_clip_min": 0.1,
+    "scaling_clip_max": 4.0,
+    "_help_scaling_clip": "Clip raw scaling factor (target/measured) to this range. 0.1 = max -20dB cut, 4.0 = max +12dB boost",
+    
+    "_comment_step1": "--- Step 1: Smoothing (applied to scaling factor) ---",
+    "smooth_f_low": 100.0,
+    "smooth_f_high": 200.0,
+    "smooth_sigma_lf": 12,
+    "smooth_sigma_hf": 5,
+    "_help_smooth_f": "Frequency range (Hz) for blending between heavy LF smoothing and light HF smoothing",
+    "_help_smooth_sigma": "Gaussian kernel size on log-frequency grid. Higher = more smoothing. LF stabilizes bass, HF preserves detail",
+    
+    "_comment_step2": "--- Step 2: Compression (optional) ---",
+    "compress": false,
+    "compress_above_hz": 8000,
+    "compress_power": 0.4,
+    "_help_compress": "If true, reduce correction strength above compress_above_hz by raising scaling to compress_power (0.5 = square root)",
+    
+    "_comment_step3": "--- Step 3: HF Taper (optional) ---",
+    "hf_taper_enable": false,
+    "hf_taper_start": 10000,
+    "hf_taper_end": 20000,
+    "hf_max_dev": 4,
+    "_help_hf_taper": "If hf_taper_enable=true, progressively blend FIR gain toward unity (1.0) from taper_start to taper_end. Prevents fighting speaker/room at extreme HF",
+    "_help_hf_max_dev": "Optional: clamp max gain deviation above taper_start (e.g., 1.5 = max ±3.5 dB). null = no clamping"
+}

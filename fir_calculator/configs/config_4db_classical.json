@@ -1,0 +1,17 @@
+{
+    "_comment_header": "FIR Config - 4dB Classical Harman (Subtle, Near-Neutral)",
+    
+    "measured": "measurements/Post-MSO_1_24s.frd",
+    "target": "targets/4db_classical_harman.txt",
+    
+    "lock_low": 200.0,
+    "lock_high": 400.0,
+    
+    "sample_rate": 96000.0,
+    "num_channels": 4,
+    "numtaps": [1024, 1024, 1024, 1024],
+    "maxtaps": 4096,
+    "channel_names": ["Left", "Right", "SubL", "SubR"],
+    "prefix": "4db_classical",
+    "minimum_phase": true
+}

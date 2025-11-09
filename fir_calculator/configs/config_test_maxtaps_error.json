@@ -1,0 +1,17 @@
+{
+    "_comment_header": "Test config that will exceed maxtaps when minimum phase is enabled",
+    
+    "measured": "measurements/Post-MSO_1_24s.frd",
+    "target": "targets/4db_classical_harman.txt",
+    
+    "lock_low": 200.0,
+    "lock_high": 400.0,
+    
+    "sample_rate": 96000.0,
+    "num_channels": 4,
+    "numtaps": [2500, 2500, 2500, 2500],
+    "maxtaps": 4096,
+    "channel_names": ["Left", "Right", "SubL", "SubR"],
+    "prefix": "test_maxtaps_error",
+    "minimum_phase": true
+}

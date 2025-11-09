@@ -1,0 +1,16 @@
+{
+    "_comment_header": "FIR Config - EDM Bass Head (Maximum Impact, Energetic)",
+    
+    "measured": "measurements/Post-MSO_1_24s.frd",
+    "target": "targets/edm_bass_head.txt",
+    
+    "lock_low": 200.0,
+    "lock_high": 400.0,
+    
+    "sample_rate": 96000.0,
+    "num_channels": 4,
+    "numtaps": [1024, 1024, 1024, 1024],
+    "maxtaps": 4096,
+    "channel_names": ["Left", "Right", "SubL", "SubR"],
+    "prefix": "edm_bass_head"
+}
